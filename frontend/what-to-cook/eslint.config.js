@@ -15,13 +15,6 @@ export default defineConfig([
   },
   pluginReact.configs.flat.recommended,
   {
-    extends: [
-      "eslint:recommended",
-      "plugin:react/recommended",
-      "plugin:prettier/recommended",
-    ],
-  },
-  {
     settings: {
       react: {
         version: "detect",
