@@ -7,9 +7,10 @@ from schemas import RecipeSpecification, MealType
 
 app = FastAPI()
 
+print(os.getenv("FRONTEND_PATH"), 'os.getenv("FRONTEND_LINK")')
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_LINK")],
+    allow_origins=[os.getenv("FRONTEND_PATH")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

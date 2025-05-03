@@ -23,9 +23,14 @@ const MealType = () => {
   console.log(mealTypes, "mealTypes");
   return (
     <div className="flex flex-col p-2 m-4">
-      <label>Choose Meal Type:</label>
-      <select id="meal_type" value={selectedMealType} onChange={handleChange}>
-        <option value="">-- wybierz --</option>
+      <label className="text-4xl mb-2 ">Choose Meal Type:</label>
+      <select
+        id="meal_type"
+        value={selectedMealType}
+        onChange={handleChange}
+        className="p-2 mb-2 text-2xl rounded-lg"
+      >
+        <option value="" />
         {mealTypes.map((meal_type) => {
           return (
             <option key={meal_type.id} value={meal_type.code}>

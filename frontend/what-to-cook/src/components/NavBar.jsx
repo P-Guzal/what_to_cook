@@ -3,9 +3,16 @@ import logo from "../assets/logo.png";
 
 const Navbar = () => {
   return (
-    <nav className="bg-blue-400 p-2">
-      <div className="mx-auto flex justify-between m-2">
-        <img className="size-24 left-0" src={logo} />
+    <nav className="bg-blue-400 h-fit">
+      <div className="mx-auto p-2 flex justify-between">
+        <div className="flex flex-row justify-center font-[Cursive] text-5xl items-center text-rose-100">
+          <img
+            className="size-24 object-cover"
+            src={logo}
+            alt={"What to cook"}
+          />
+          <h1>What to cook?</h1>
+        </div>
         <ul className="flex space-x-6 items-center">
           <li>
             <a

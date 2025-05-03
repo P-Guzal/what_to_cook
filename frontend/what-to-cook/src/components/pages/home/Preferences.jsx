@@ -36,8 +36,10 @@ const Preferences = () => {
   };
 
   const removeInput = () => {
-    const updatedIngredients = [...ingredients.slice(0, -1)];
-    setIngredients(updatedIngredients);
+    if (ingredients.length !== 1) {
+      const updatedIngredients = [...ingredients.slice(0, -1)];
+      setIngredients(updatedIngredients);
+    }
   };
   return (
     <div className="bg-rose-50">
