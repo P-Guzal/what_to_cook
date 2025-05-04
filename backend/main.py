@@ -3,11 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 import os
 
 from receipe_generator import RecipeGenerator
-from schemas import RecipeSpecification, MealType
+from schemas import RecipeSpecification, MealType, GeneratedRecipe
 
 app = FastAPI()
 
-print(os.getenv("FRONTEND_PATH"), 'os.getenv("FRONTEND_LINK")')
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[os.getenv("FRONTEND_PATH")],
@@ -18,8 +17,8 @@ app.add_middleware(
 
 
 @app.post("/generate_recipe/")
-async def generate_recipe(recipe_specification: RecipeSpecification) -> str:
-    return RecipeGenerator().get_recipe(recipe_specification)
+async def generate_recipe(recipe_specification: RecipeSpecification) -> GeneratedRecipe:
+    return GeneratedRecipe(recipe=RecipeGenerator().get_recipe(recipe_specification))
 
 
 @app.get("/meal_types/")

@@ -16,3 +16,7 @@ class RecipeSpecification(BaseModel):
     ingredients: list[str]
     meal_type: MealType
     preferences: list[str]
+
+
+class GeneratedRecipe(BaseModel):
+    recipe: str

@@ -1,11 +1,23 @@
 import React, { useState, useEffect } from "react";
 
-const MealType = () => {
-  const [selectedMealType, setSelectedMealType] = useState("");
+const MealType = ({
+  name,
+  error,
+  setError,
+  onChange,
+  selectedMealType,
+  setSelectedMealType,
+}) => {
   const [mealTypes, setMealTypes] = useState([]);
-
+  let apiLink;
+  try {
+    apiLink = import.meta.env.VITE_API_URL;
+  } catch (err) {
+    setError("Missing environment variable");
+    console.log(err);
+  }
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/meal_types/")
+    fetch(`${apiLink}meal_types/`)
       .then((res) => res.json())
       .then((data) => {
         const types = Object.entries(data).map(([id, name]) => ({
@@ -19,16 +31,19 @@ const MealType = () => {
 
   const handleChange = (e) => {
     setSelectedMealType(e.target.value);
+    onChange(name, e.target.value);
   };
-  console.log(mealTypes, "mealTypes");
+
   return (
-    <div className="flex flex-col p-2 m-4">
-      <label className="text-4xl mb-2 ">Choose Meal Type:</label>
+    <div className="flex flex-col p-2 m-1">
+      <label className="component_header">Choose Meal Type:</label>
       <select
         id="meal_type"
         value={selectedMealType}
         onChange={handleChange}
-        className="p-2 mb-2 text-2xl rounded-lg"
+        className={`p-2 mb-2 rounded-lg border-4 text-4xl  ${
+          selectedMealType === "" ? "border-red-500" : "border-gray-300"
+        }`}
       >
         <option value="" />
         {mealTypes.map((meal_type) => {
@@ -39,6 +54,9 @@ const MealType = () => {
           );
         })}
       </select>
+      {error && selectedMealType === "" && (
+        <p className="text-red-500 text-2xl">{error}</p>
+      )}
     </div>
   );
 };

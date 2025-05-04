@@ -3,7 +3,7 @@ import logo from "../assets/logo.png";
 
 const Navbar = () => {
   return (
-    <nav className="bg-blue-400 h-fit">
+    <nav className="bg-blue-400 h-fit m-0">
       <div className="mx-auto p-2 flex justify-between">
         <div className="flex flex-row justify-center font-[Cursive] text-5xl items-center text-rose-100">
           <img

@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.plus_minus_button {
+  @apply size-8 bg-blue-100 m-2 rounded-lg;
+}
+
+.component_header {
+  @apply text-4xl mb-2;
+}

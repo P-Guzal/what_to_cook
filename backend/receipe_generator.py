@@ -15,16 +15,16 @@ class RecipeGenerator:
     def generate_prompt(self, recipe_specification) -> str:
         prompt = (
             f"I have the following ingredients at home: {','.join(recipe_specification.ingredients)}."
-            f"I’d like to prepare a {recipe_specification.meal_type}."
+            f" I’d like to prepare a {recipe_specification.meal_type}."
         )
 
         preferences = recipe_specification.preferences
         if preferences:
-            prompt = prompt + f"My preferences are: {','.join(preferences)}."
+            prompt = prompt + f" My preferences are: {','.join(preferences)}."
 
         prompt = (
             prompt
-            + "Please give me a recipe with step-by-step instructions. Include a list of ingredients with proportions and preparation instructions."
+            + " Please give me a recipe with step-by-step instructions. Include a list of ingredients with proportions and preparation instructions. Please without any added message."
         )
         return prompt
 
@@ -37,6 +37,5 @@ class RecipeGenerator:
 
     def get_recipe(self, recipe_specification: RecipeSpecification) -> str:
         prompt = self.generate_prompt(recipe_specification)
-        # response = self.get_chat_response(prompt)
-        # return response.choices[0].message.content
-        return "przepis"
+        response = self.get_chat_response(prompt)
+        return response.choices[0].message.content
