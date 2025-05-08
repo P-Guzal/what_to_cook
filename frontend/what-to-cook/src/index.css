@@ -9,3 +9,7 @@
 .component_header {
   @apply text-4xl mb-2;
 }
+
+.menu_button {
+  @apply font-[Cursive] text-5xl text-rose-200 hover:bg-gray-700 block px-3 py-2 rounded-md font-medium;
+}

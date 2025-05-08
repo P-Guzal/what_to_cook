@@ -1,0 +1,46 @@
+{
+  "hash": "76706264",
+  "configHash": "102ff8b6",
+  "lockfileHash": "e454d148",
+  "browserHash": "cddaa03a",
+  "optimized": {
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "614b3e02",
+      "needsInterop": true
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "b141a1de",
+      "needsInterop": true
+    },
+    "@auth0/auth0-react": {
+      "src": "../../node_modules/@auth0/auth0-react/dist/auth0-react.esm.js",
+      "file": "@auth0_auth0-react.js",
+      "fileHash": "47288240",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.mjs",
+      "file": "react-router-dom.js",
+      "fileHash": "5d4d966c",
+      "needsInterop": false
+    },
+    "@react-pdf/renderer": {
+      "src": "../../node_modules/@react-pdf/renderer/lib/react-pdf.browser.js",
+      "file": "@react-pdf_renderer.js",
+      "fileHash": "de252c67",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-Y3MGQG47": {
+      "file": "chunk-Y3MGQG47.js"
+    },
+    "chunk-IT4SZZ7J": {
+      "file": "chunk-IT4SZZ7J.js"
+    }
+  }
+}
