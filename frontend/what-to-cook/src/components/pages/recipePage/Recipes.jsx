@@ -8,7 +8,6 @@ const Recipes = () => {
           <h1 className="text-6xl font-bold font-[Cursive] text-center ">
             Your saved recipes:
           </h1>
-
         </div>
       </div>
     </div>

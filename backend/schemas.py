@@ -20,3 +20,8 @@ class RecipeSpecification(BaseModel):
 
 class GeneratedRecipe(BaseModel):
     recipe: str
+
+
+class SavedRecipe(BaseModel):
+    title: str
+    recipe: str

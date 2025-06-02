@@ -1,11 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from sqlalchemy.orm import Session
 
 from receipe_generator import RecipeGenerator
 from schemas import RecipeSpecification, MealType, GeneratedRecipe
 import models
-from database import engine
+from database import engine, get_db
 
 app = FastAPI()
 
@@ -29,11 +30,13 @@ def get_meal_types() -> dict[int, str]:
     return {i: meal_type for i, meal_type in enumerate(MealType)}
 
 
-@app.get("/save_recipe/")
-def get_meal_types() -> dict[int, str]:
-    return {i: meal_type for i, meal_type in enumerate(MealType)}
-
-
-@app.get("/get_recipes/")
-def get_meal_types() -> dict[int, str]:
-    return {i: meal_type for i, meal_type in enumerate(MealType)}
+@app.post(
+    "/add_recipe/",
+)
+async def add_recipe(
+    recipe: GeneratedRecipe, db: Session = Depends(get_db)
+) -> models.Recipe:
+    recipe_to_add = models.Recipe(**recipe.model_dump())
+    db.add(recipe_to_add)
+    db.commit()
+    return recipe_to_add
