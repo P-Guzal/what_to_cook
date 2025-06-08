@@ -1,7 +1,11 @@
-import React from "react";
 import PlusInput from "./PlusInput.jsx";
 
-const Preferences = ({ name, onChange, preferences, setPreferences }) => {
+export default function Preferences({
+  name,
+  onChange,
+  preferences,
+  setPreferences,
+}) {
   return (
     <div className="bg-rose-100 rounded-lg ">
       <PlusInput
@@ -14,5 +18,4 @@ const Preferences = ({ name, onChange, preferences, setPreferences }) => {
       />
     </div>
   );
-};
-export default Preferences;
+}

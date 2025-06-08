@@ -1,7 +1,16 @@
-import React from "react";
+import { useState } from "react";
+import getApiUrl from "@/utils/getApiUrl";
 
-const SubmitButton = ({ onChange, formData, setError, setRecipe }) => {
-  const handleSubmit = async (e) => {
+export default function SubmitButton({
+  onChange,
+  formData,
+  setInputError,
+  setRecipe,
+}) {
+  const [submitError, setSubmitError] = useState("");
+  const apiUrl = getApiUrl();
+
+ async function handleSubmit(e) {
     e.preventDefault();
 
     if (
@@ -9,40 +18,38 @@ const SubmitButton = ({ onChange, formData, setError, setRecipe }) => {
         .length !== 0 ||
       !formData.meal_type
     ) {
-      setError("Please fill in required fields");
+      setInputError("Please fill in required fields");
       return;
     }
 
     try {
-      let apiLink;
-      try {
-        apiLink = import.meta.env.VITE_API_URL;
-      } catch (err) {
-        setError("Missing environment variable");
-        console.log(err);
+      if (!apiUrl) {
+        setSubmitError("Internal service error");
+        return;
       }
 
-      const response = await fetch(`${apiLink}generate_recipe/`, {
+      const response = await fetch(`${apiUrl}generate_recipe/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-      if (!response.ok) throw new Error("Server error");
+      if (!response.ok) throw new Error(response);
       const data = await response.json();
       setRecipe(data?.recipe);
 
-      setError("");
+      setInputError("");
+      setSubmitError("");
     } catch (err) {
-      setError("Submission failed");
+      setSubmitError("Submission failed", err);
       console.log(err);
     }
-  };
+  }
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     onChange(name, e.target.value);
-  };
+  }
 
   return (
     <div className="flex flex-col p-2 m-1">
@@ -53,7 +60,7 @@ const SubmitButton = ({ onChange, formData, setError, setRecipe }) => {
       >
         I&apos;m ready to cook
       </button>
+      {submitError && <p className="warning_text">{submitError}</p>}
     </div>
   );
-};
-export default SubmitButton;
+}

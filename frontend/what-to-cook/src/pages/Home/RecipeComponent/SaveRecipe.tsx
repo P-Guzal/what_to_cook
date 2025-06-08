@@ -1,13 +1,13 @@
-import React from "react";
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import SaveRecipeModal from "./SaveRecipeModal.jsx";
 
-const SaveRecipe = ({ recipe }) => {
+export default function SaveRecipe({ recipe }) {
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <div>
-      <button
-        onChange={handleChange}
-        onClick={handleSubmit}
-        className="m-2 p-2 bg-blue-200 rounded-lg "
-      >
+      <button onClick={() => setOpenModal(true)} className="recipe_button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -23,7 +23,14 @@ const SaveRecipe = ({ recipe }) => {
           />
         </svg>
       </button>
+      {openModal &&
+        createPortal(
+          <SaveRecipeModal
+            onClose={() => setOpenModal(false)}
+            recipe={recipe}
+          />,
+          document.body,
+        )}
     </div>
   );
-};
-export default SaveRecipe;
+}

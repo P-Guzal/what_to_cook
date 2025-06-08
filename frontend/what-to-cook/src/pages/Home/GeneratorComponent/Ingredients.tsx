@@ -1,18 +1,17 @@
-import React from "react";
 import PlusInput from "./PlusInput.jsx";
 
-const Ingredients = ({
+export default function Ingredients({
   name,
-  error,
+  inputError,
   onChange,
   ingredients,
   setIngredients,
-}) => {
+}) {
   return (
     <div>
       <PlusInput
         name={name}
-        error={error}
+        error={inputError}
         onChange={onChange}
         inputs={ingredients}
         setInputs={setIngredients}
@@ -21,5 +20,4 @@ const Ingredients = ({
       />
     </div>
   );
-};
-export default Ingredients;
+}

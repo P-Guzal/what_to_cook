@@ -1,15 +1,17 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+import os
+from sqlmodel import Session, SQLModel, create_engine
 
-DATABASE_URL = "sqlite:///./what_to_cook.db"
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+database_url = os.getenv("DATABASE_URL")
+if database_url:
+    engine = create_engine(database_url, echo=True)
+else:
+    raise EnvironmentError("DATABASE_URL not set")
 
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+def create_db() -> None:
+    SQLModel.metadata.create_all(engine)
+
+
+def get_session():
+    with Session(engine) as session:
+        yield session

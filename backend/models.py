@@ -1,17 +1,13 @@
-from sqlalchemy import Column, Integer, String
-from database import Base
+from sqlmodel import Field, SQLModel
+from schemas import SavedRecipe
 
 
-class Recipe(Base):
-    __tablename__ = "recipes"
+class Recipe(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    auth0_id: str
+    title: str
+    name: str
+    content: str
 
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    content = Column(String)
-
-
-class User(Base):
-    __tablename__ = "users"
-
-    id = Column(Integer, primary_key=True, index=True)
-    auth0_id = Column(String, unique=True, index=True)
+    def to_recipe(self) -> SavedRecipe:
+        return SavedRecipe(title=self.title, recipe=self.content)

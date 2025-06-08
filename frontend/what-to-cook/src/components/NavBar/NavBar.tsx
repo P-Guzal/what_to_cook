@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,7 @@ import LoginButton from "./LoginButton.jsx";
 import LogoutButton from "./LogoutButton.jsx";
 import SignInButton from "./SingInButton.jsx";
 
-const Navbar = () => {
+export default function Navbar() {
   const { isAuthenticated, isLoading } = useAuth0();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +20,8 @@ const Navbar = () => {
             src={logo}
             alt={"What to cook"}
           />
-          <h1>What to cook?</h1>
+
+          <h1>What to cook? </h1>
         </div>
         <ul className="flex space-x-6 items-center">
           <li>
@@ -28,7 +29,7 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          {!isAuthenticated && (
+          {isAuthenticated && (
             <li>
               <Link to="/recipes" className="menu_button">
                 Your Recipes
@@ -74,6 +75,4 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}

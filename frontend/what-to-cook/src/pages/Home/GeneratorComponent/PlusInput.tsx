@@ -1,6 +1,4 @@
-import React from "react";
-
-const PlusInput = ({
+export default function PlusInput({
   name,
   error,
   onChange,
@@ -9,23 +7,25 @@ const PlusInput = ({
   header,
   allowWithout = false,
   required = false,
-}) => {
-  const handleChange = (e) => {
+}) {
+  function handleChange(e) {
     e.preventDefault();
 
     const index = Number(e.target.id);
+
     setInputs((s) => {
       const newArr = s.slice();
       newArr[index].value = e.target?.value;
       return newArr;
     });
+
     onChange(
       name,
       inputs.map((item) => item.value),
     );
-  };
+  }
 
-  const addInput = () => {
+  function addInput() {
     setInputs((s) => {
       let id = 0;
       if (s.length !== 0) {
@@ -41,9 +41,9 @@ const PlusInput = ({
         },
       ];
     });
-  };
+  }
 
-  const removeInput = () => {
+  function removeInput() {
     if (inputs.length !== 1 || allowWithout) {
       const updatedInputs = [...inputs.slice(0, -1)];
       setInputs(updatedInputs);
@@ -52,7 +52,7 @@ const PlusInput = ({
         updatedInputs.map((item) => item.value),
       );
     }
-  };
+  }
   return (
     <div className="bg-rose-100 rounded-lg">
       <div className="flex flex-row p-2 m-4">
@@ -108,8 +108,7 @@ const PlusInput = ({
       {error &&
         inputs.map((item) => item.value).filter((item) => item === "")
           .length !== 0 &&
-        required && <p className="text-red-500 text-2xl p-2">{error}</p>}
+        required && <p className="warning_text">{error}</p>}
     </div>
   );
-};
-export default PlusInput;
+}

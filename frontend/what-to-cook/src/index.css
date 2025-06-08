@@ -13,3 +13,11 @@
 .menu_button {
   @apply font-[Cursive] text-5xl text-rose-200 hover:bg-gray-700 block px-3 py-2 rounded-md font-medium;
 }
+
+.warning_text {
+  @apply text-red-500 text-2xl p-2;
+}
+
+.recipe_button {
+  @apply m-2 p-2 bg-blue-200 rounded-lg;
+}

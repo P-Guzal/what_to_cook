@@ -1,17 +1,18 @@
-import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import DownloadPDF from "./DownloadPdf.jsx";
 import SaveRecipe from "./SaveRecipe.jsx";
 
-const Recipe = ({ recipe = "" }) => {
+export default function Recipe({ recipe = "" }) {
+  const { isAuthenticated } = useAuth0();
   return (
     <div className="flex flex-col p-2 m-2">
       <label className="text-4xl mb-2 font-bold font-[Cursive]">
         Here&apos;s your recipe:
       </label>
       <div className="bg-blue-100 p-2 rounded-lg flex flex-row">
-        <DownloadPDF />
-        <SaveRecipe />
-        <button className="m-2 p-2 bg-blue-200 rounded-lg">
+        <DownloadPDF recipe={recipe} />
+        {isAuthenticated && <SaveRecipe recipe={recipe} />}
+        <button className="recipe_button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -37,5 +38,4 @@ const Recipe = ({ recipe = "" }) => {
       ></textarea>
     </div>
   );
-};
-export default Recipe;
+}

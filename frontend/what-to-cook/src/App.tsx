@@ -1,12 +1,11 @@
-import React from "react";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/NavBar/NavBar.jsx";
-import Home from "./components/pages/homePage/Home.jsx";
-import Recipes from "./components/pages/recipePage/Recipes.jsx";
-import About from "./components/pages/About.jsx";
 
-function App() {
+import Navbar from "./components/NavBar/NavBar.jsx";
+import Home from "./pages/Home/Home.jsx";
+import Recipes from "./pages/Recipes/Recipes.jsx";
+import About from "./pages/About.jsx";
+
+export default function App() {
   return (
     <Router>
       <Navbar />
@@ -20,5 +19,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

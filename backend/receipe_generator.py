@@ -39,3 +39,4 @@ class RecipeGenerator:
         prompt = self.generate_prompt(recipe_specification)
         response = self.get_chat_response(prompt)
         return response.choices[0].message.content
+        # return "test"
